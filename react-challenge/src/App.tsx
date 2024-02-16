@@ -1,14 +1,22 @@
+import { Route, Routes } from 'react-router-dom'
 import Header from './components/Header/Header'
-import MainNotice from './components/MainNotice/MainNotice'
+import FirstNotice from './components/FirstNotice/FirstNotice'
 import './App.css'
+
 
 function App() {
   
   return (
-    <>
-      <Header />
-      <MainNotice />
-    </>
+    <Routes>
+      <Route 
+        path="/"
+        element={ 
+          <>
+            <Header /> 
+            <FirstNotice />
+          </>
+        } />
+    </Routes>
   )
 }
 

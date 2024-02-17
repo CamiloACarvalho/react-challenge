@@ -20,7 +20,8 @@ export type notice = {
   produto_id: number;
   produtos: string;
   editorias: string;
-  imagens: object;
+  imagens: string;
+  imageUrl: string; 
   produtos_relacionados: string;
   destaque: boolean;
   link: string;

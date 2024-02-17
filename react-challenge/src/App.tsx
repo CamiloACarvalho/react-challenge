@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import Header from './components/Header/Header'
-import FirstNotice from './components/FirstNotice/FirstNotice'
+import BreakNews from './components/BreakNews/BreakNews'
 import './App.css'
 
 
@@ -13,7 +13,7 @@ function App() {
         element={ 
           <>
             <Header /> 
-            <FirstNotice />
+            <BreakNews />
           </>
         } />
     </Routes>

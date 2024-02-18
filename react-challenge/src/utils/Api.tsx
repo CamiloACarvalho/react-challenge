@@ -10,7 +10,6 @@ async function Api() {
       const imageUrl = imagensObj.image_fulltext;
       return { ...item, imageUrl };
     });
-    
     return itemsWithImages;
   } catch (error) {
     // Caso ocorra algum erro, retorno um array vazio

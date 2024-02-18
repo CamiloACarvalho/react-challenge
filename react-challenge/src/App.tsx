@@ -16,6 +16,38 @@ function App() {
             <BreakNews />
           </>
         } />
+      <Route
+        path="/mostRecentely"
+        element={
+          <>
+            <Header />
+          </>
+        }
+      />
+      <Route
+        path="/release"
+        element={
+          <>
+            <Header />
+          </>
+        }
+      />
+      <Route
+        path="/news"
+        element={
+          <>
+            <Header />
+          </>
+        }
+      />
+      <Route
+        path="/favorite"
+        element={
+          <>
+            <Header />
+          </>
+        }
+      />
     </Routes>
   )
 }

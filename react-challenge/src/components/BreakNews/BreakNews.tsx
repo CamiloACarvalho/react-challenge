@@ -45,7 +45,19 @@ function BreakNews () {
   let datePublication: number | null = null;
 
   if (lastBreakingNews?.data_publicacao) {
-    datePublication = Date.parse(lastBreakingNews.data_publicacao);
+    // Desestruturando as informações da data de publicação
+    const [dayMonthYear, hourMinute] = lastBreakingNews.data_publicacao.split(' ');
+    const [day, month, year] = dayMonthYear.split('/');
+    const [hour, minute] = hourMinute.split(':');
+
+    // Validando os valores antes de criar a data
+    const parsedDay = parseInt(day);
+    const parsedMonth = parseInt(month) - 1; // Meses em JavaScript começam de zero
+    const parsedYear = parseInt(year);
+    const parsedHour = parseInt(hour);
+    const parsedMinute = parseInt(minute);
+
+    datePublication = new Date(parsedYear, parsedMonth, parsedDay, parsedHour, parsedMinute).getTime();
   }
 
   // Diferença entre a data atual e a data de publicação da notícia

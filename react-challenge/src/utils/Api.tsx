@@ -8,6 +8,7 @@ async function Api() {
     const itemsWithImages = data.items.map((item: notice) => {
       const imagensObj = JSON.parse(item.imagens);
       const imageUrl = imagensObj.image_fulltext;
+      console.log(imageUrl);
       return { ...item, imageUrl };
     });
     return itemsWithImages;

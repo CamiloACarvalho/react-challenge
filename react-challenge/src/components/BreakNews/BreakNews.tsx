@@ -5,6 +5,7 @@ import { notice } from '../../types/Types';
 import loadGif from '../../image/loading-2874.gif'
 import favorite from '../../image/favoritado.png'
 import notFavorite from '../../image/desfavoritado.png'
+import style from './BreakNews.module.css'
 
 function BreakNews () {
   // esse useState é para armazenar o estado de carregamento
@@ -89,6 +90,10 @@ function BreakNews () {
     }
   };
 
+  const urlImagem = (wayOfImage: string) => {
+    return `https://agenciadenoticias.ibge.gov.br/${wayOfImage}`;
+  }
+  
   return (
     <div>
       { loading ? (
@@ -109,7 +114,11 @@ function BreakNews () {
           <div>
             { lastBreakingNews && (
               <div>
-                <img src={ lastBreakingNews.imageUrl } alt={ lastBreakingNews.titulo } /> 
+                <img
+                  className={style.image}
+                  src={ urlImagem(lastBreakingNews?.imageUrl) }
+                  alt={ lastBreakingNews.titulo } 
+                /> 
                 <h2 className="mainTitle">{ lastBreakingNews.titulo }</h2>
                 <p>{ lastBreakingNews.introducao }</p>
                 <button
@@ -132,9 +141,17 @@ function BreakNews () {
             {' '}
           </div>
           <div className="allNews">
-            { allNews.map((news) => (
+          {allNews
+            // Filtra as notícias, removendo a última notícia mais recente da lista
+            .filter((news) => news.id !== lastBreakingNews?.id)
+            // renderiza as outras notícias (menos recentes)
+            .map((news) => (
               <div key={ news.id }>
-                <img src={ news.imageUrl } alt={ news.titulo } />
+                <img
+                  className={ style.image }
+                  src={ urlImagem(news?.imageUrl) }
+                  alt={ news.titulo }
+                />
                 <h2 className="mainTitle">{ news.titulo }</h2>
                 <p>{ news.introducao }</p>
                 <button

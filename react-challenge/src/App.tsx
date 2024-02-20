@@ -1,6 +1,8 @@
 import { Route, Routes } from 'react-router-dom'
 import Header from './components/Header/Header'
 import BreakNews from './components/BreakNews/BreakNews'
+import Release from './components/Release/Release'
+import News from './components/News/News'
 import './App.css'
 
 
@@ -29,6 +31,7 @@ function App() {
         element={
           <>
             <Header />
+            <Release />
           </>
         }
       />
@@ -37,6 +40,7 @@ function App() {
         element={
           <>
             <Header />
+            <News />
           </>
         }
       />

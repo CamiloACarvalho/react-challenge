@@ -5,13 +5,12 @@ import { notice } from '../../types/Types';
 import loadGif from '../../image/loading-2874.gif'
 import favorite from '../../image/favoritado.png'
 import notFavorite from '../../image/desfavoritado.png'
-import style from './BreakNews.module.css'
+import style from './News.module.css'
 
-function BreakNews () {
+
+function News () {
   // esse useState é para armazenar o estado de carregamento
   const [loading, setLoading] = useState(true);
-  // Esse useState é para verificar notícia mais recente gerada pela API
-  const [lastBreakingNews, setLastBreakingNews] = useState<notice | null>(null);
   // Esse useState é para rendererizar todas as notícias
   const [allNews, setAllNews] = useState<notice[]>([]);
   // Armanezar a data atual
@@ -27,7 +26,6 @@ function BreakNews () {
       try {
         const newsData = await Api();
         setLoading(false);
-        setLastBreakingNews(findMostRecent(newsData));
         setAllNews(newsData.slice(0, loadedNews));
       } catch (error) {
         console.error('Erro ao buscar dados:', error);
@@ -41,21 +39,6 @@ function BreakNews () {
   // Função para carregar mais notícias
   const handleLoadMore = () => {
     setLoadedNews(loadedNews + 6);
-  };
-
-  // Função para encontrar a notícia mais recente
-  const findMostRecent = (newsData: notice[]): notice | null => {
-    if (newsData.length === 0) return null;
-
-    let mostRecent = newsData[0];
-    for (let i = 1; i < newsData.length; i++) {
-      const current = new Date(newsData[i].data_publicacao);
-      const recent = new Date(mostRecent.data_publicacao);
-      if (current > recent) {
-        mostRecent = newsData[i];
-      }
-    }
-    return mostRecent;
   };
 
   let datePublication: number | null = null;
@@ -93,43 +76,13 @@ function BreakNews () {
   const urlImagem = (wayOfImage: string) => {
     return `https://agenciadenoticias.ibge.gov.br/${wayOfImage}`;
   }
-  
+
   return (
     <div>
       { loading ? (
         <img className="loading" src={ loadGif } alt="loading" />
       ) : (
-        <section className="rencentelyNews">
-          <h3 className="subTitle">Notícia de última hora:</h3>
-          <div>
-            { lastBreakingNews && (
-              <div>
-                <img
-                  className={style.image}
-                  src={ urlImagem(lastBreakingNews?.imageUrl) }
-                  alt={ lastBreakingNews.titulo } 
-                /> 
-                <h2 className="mainTitle">{ lastBreakingNews.titulo }</h2>
-                <button
-                  type="button"
-                  className="favoriteButton"
-                  onClick={() => setIsFavorite(!isfavorite)}
-                >
-                  { isfavorite ?
-                    <img src={ favorite } alt="Favoritado" /> :
-                    <img src={ notFavorite } alt="Desfavoritado" />
-                  }
-                </button>
-                <p>{ lastBreakingNews.introducao }</p>
-                <button
-                  className="link"
-                >
-                  <a href={ lastBreakingNews.link }>Leia mais</a>
-                </button>
-                <p>{ calculateTimeDifference(lastBreakingNews.data_publicacao) }</p>
-              </div>
-            )}
-          </div>
+        <section>
           <div className="links">
             <Link to="/mostRecentely">Mais recentes</Link>
             {' '}
@@ -142,9 +95,8 @@ function BreakNews () {
           </div>
           <div className="allNews">
           {allNews
-            // Filtra as notícias, removendo a última notícia mais recente da lista
-            .filter((news) => news.id !== lastBreakingNews?.id)
-            // renderiza as outras notícias (menos recentes)
+            // Filtra somente as notícias do tipo release
+            .filter((news) => news.tipo === 'Notícia')
             .map((news) => (
               <div key={ news.id }>
                 <img
@@ -186,4 +138,4 @@ function BreakNews () {
   );
 }
 
-export default BreakNews;
+export default News;

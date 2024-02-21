@@ -26,3 +26,9 @@ export type notice = {
   destaque: boolean;
   link: string;
 }
+
+// Tipando as informações do Context
+export type ContextType = {
+  favoriteNews: Array<object>;
+  setFavoriteNews: (value: Array<object>) => void;
+}

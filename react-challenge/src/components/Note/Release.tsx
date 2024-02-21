@@ -1,5 +1,7 @@
 import Api from '../../utils/Api';
 import { useEffect, useState } from 'react';
+import { useContext } from 'react';
+import ContextFavorite from '../Context/ContextFavorite';
 import { Link } from 'react-router-dom';
 import { notice } from '../../types/Types';
 import loadGif from '../../image/loading-2874.gif'
@@ -11,10 +13,13 @@ function Release () {
   const [loading, setLoading] = useState(true);
   // Esse useState é para rendererizar todas as notícias
   const [allNews, setAllNews] = useState<notice[]>([]);
-  // Salvar a notícia favorita
-  const [isfavorite, setIsFavorite] = useState(false);
   // useState para armazenar o número de notícias carregadas
   const [loadedNews, setLoadedNews] = useState(6);
+
+  const {
+    isFavorite,
+    handleFavorite,
+  } = useContext(ContextFavorite);
 
   // Chamada da API para atualizar quando a página for carregada
   useEffect(() => {
@@ -104,9 +109,9 @@ function Release () {
                 <button
                   type="button"
                   className="favoriteButton"
-                  onClick={() => setIsFavorite(!isfavorite)}
+                  onClick={() => handleFavorite(news) }
                 >
-                  { isfavorite ?
+                  { isFavorite ?
                     <img src={ favorite } alt="Favoritado" /> :
                     <img src={ notFavorite } alt="Desfavoritado" />
                   }

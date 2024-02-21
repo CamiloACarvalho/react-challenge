@@ -1,5 +1,7 @@
 import Api from '../../utils/Api';
 import { useEffect, useState } from 'react';
+import { useContext } from 'react';
+import ContextFavorite from '../Context/ContextFavorite';
 import { Link } from 'react-router-dom';
 import { notice } from '../../types/Types';
 import loadGif from '../../image/loading-2874.gif'
@@ -12,8 +14,11 @@ function RecentlyNews () {
   const [loading, setLoading] = useState(true);
   // Esse useState é para verificar notícia mais recente gerada pela API
   const [dayNews, setDayNews] = useState<notice[]>([]);
-  // Salvar a notícia favorita
-  const [isfavorite, setIsFavorite] = useState(false);
+
+  const {
+    isFavorite,
+    handleFavorite,
+  } = useContext(ContextFavorite);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -98,9 +103,9 @@ function RecentlyNews () {
                       <button
                         type="button"
                         className="favoriteButton"
-                        onClick={() => setIsFavorite(!isfavorite)}
+                        onClick={() => handleFavorite(news) }
                       >
-                        {isfavorite ? (
+                        {isFavorite ? (
                           <img src={favorite} alt="Favoritado" />
                         ) : (
                           <img src={notFavorite} alt="Desfavoritado" />
@@ -128,9 +133,9 @@ function RecentlyNews () {
                       <button
                         type="button"
                         className="favoriteButton"
-                        onClick={() => setIsFavorite(!isfavorite)}
+                        onClick={ () => handleFavorite(news) }
                       >
-                        {isfavorite ? (
+                        {isFavorite ? (
                           <img src={favorite} alt="Favoritado" />
                         ) : (
                           <img src={notFavorite} alt="Desfavoritado" />

@@ -29,6 +29,7 @@ export type notice = {
 
 // Tipando as informações do Context
 export type ContextType = {
-  favoriteNews: Array<object>;
-  setFavoriteNews: (value: Array<object>) => void;
+  favorites: notice[];
+  isFavorite: boolean;
+  handleFavorite: (value: notice) => void;
 }

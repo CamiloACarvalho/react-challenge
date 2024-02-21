@@ -13,8 +13,6 @@ function News () {
   const [loading, setLoading] = useState(true);
   // Esse useState é para rendererizar todas as notícias
   const [allNews, setAllNews] = useState<notice[]>([]);
-  // Armanezar a data atual
-  const [today, setToday] = useState(new Date());
   // Salvar a notícia favorita
   const [isfavorite, setIsFavorite] = useState(false);
   // useState para armazenar o número de notícias carregadas
@@ -47,6 +45,8 @@ function News () {
     const [dayMonthYear, hourMinute] = publicationDate.split(' ');
     const [day, month, year] = dayMonthYear.split('/');
     const [hour, minute] = hourMinute.split(':');
+
+    const today = new Date();
   
     // Validando os valores antes de criar a data
     const parsedDay = parseInt(day);
@@ -84,7 +84,7 @@ function News () {
       ) : (
         <section>
           <div className="links">
-            <Link to="/mostRecentely">Mais recentes</Link>
+            <Link to="/mostRecently">Mais recentes</Link>
             {' '}
             <Link to="/release">Release</Link>
             {' '}

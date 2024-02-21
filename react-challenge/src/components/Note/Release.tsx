@@ -5,16 +5,12 @@ import { notice } from '../../types/Types';
 import loadGif from '../../image/loading-2874.gif'
 import favorite from '../../image/favoritado.png'
 import notFavorite from '../../image/desfavoritado.png'
-import style from './Release.module.css'
-
 
 function Release () {
   // esse useState é para armazenar o estado de carregamento
   const [loading, setLoading] = useState(true);
   // Esse useState é para rendererizar todas as notícias
   const [allNews, setAllNews] = useState<notice[]>([]);
-  // Armanezar a data atual
-  const [today, setToday] = useState(new Date());
   // Salvar a notícia favorita
   const [isfavorite, setIsFavorite] = useState(false);
   // useState para armazenar o número de notícias carregadas
@@ -47,6 +43,8 @@ function Release () {
     const [dayMonthYear, hourMinute] = publicationDate.split(' ');
     const [day, month, year] = dayMonthYear.split('/');
     const [hour, minute] = hourMinute.split(':');
+
+    const today = new Date();
   
     // Validando os valores antes de criar a data
     const parsedDay = parseInt(day);
@@ -73,10 +71,6 @@ function Release () {
     }
   };
 
-  // const urlImagem = (wayOfImage: string) => {
-  //   return `https://agenciadenoticias.ibge.gov.br/${wayOfImage}`;
-  // }
-
   return (
     <div>
       { loading ? (
@@ -84,7 +78,7 @@ function Release () {
       ) : (
         <section>
           <div className="links">
-            <Link to="/mostRecentely">Mais recentes</Link>
+            <Link to="/mostRecently">Mais recentes</Link>
             {' '}
             <Link to="/release">Release</Link>
             {' '}
@@ -99,11 +93,6 @@ function Release () {
             .filter((news) => news.tipo === 'Release')
             .map((news) => (
               <div key={ news.id }>
-                {/* <img
-                  className={ style.image }
-                  src={ urlImagem(news?.imageUrl) }
-                  alt={ news.titulo }
-                /> */}
                 <h2 className="mainTitle">{ news.titulo }</h2>
                 <p>{ news.introducao }</p>
                 <p>{ calculateTimeDifference(news.data_publicacao) }</p>

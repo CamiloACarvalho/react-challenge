@@ -14,8 +14,6 @@ function BreakNews () {
   const [lastBreakingNews, setLastBreakingNews] = useState<notice | null>(null);
   // Esse useState é para rendererizar todas as notícias
   const [allNews, setAllNews] = useState<notice[]>([]);
-  // Armanezar a data atual
-  const [today, setToday] = useState(new Date());
   // Salvar a notícia favorita
   const [isfavorite, setIsFavorite] = useState(false);
   // useState para armazenar o número de notícias carregadas
@@ -64,6 +62,8 @@ function BreakNews () {
     const [dayMonthYear, hourMinute] = publicationDate.split(' ');
     const [day, month, year] = dayMonthYear.split('/');
     const [hour, minute] = hourMinute.split(':');
+
+    const today = new Date();
   
     // Validando os valores antes de criar a data
     const parsedDay = parseInt(day);
@@ -131,7 +131,7 @@ function BreakNews () {
             )}
           </div>
           <div className="links">
-            <Link to="/mostRecentely">Mais recentes</Link>
+            <Link to="/mostRecently">Mais recentes</Link>
             {' '}
             <Link to="/release">Release</Link>
             {' '}
@@ -147,29 +147,26 @@ function BreakNews () {
             // renderiza as outras notícias (menos recentes)
             .map((news) => (
               <div key={ news.id }>
-                <img
-                  className={ style.image }
-                  src={ urlImagem(news?.imageUrl) }
-                  alt={ news.titulo }
-                />
-                <h2 className="mainTitle">{ news.titulo }</h2>
-                <p>{ news.introducao }</p>
-                <p>{ calculateTimeDifference(news.data_publicacao) }</p>
-                <button
-                  className="link"
-                >
-                  <a href={ news.link }>Leia mais</a>
-                </button>
-                <button
-                  type="button"
-                  className="favoriteButton"
-                  onClick={() => setIsFavorite(!isfavorite)}
-                >
-                  { isfavorite ?
-                    <img src={ favorite } alt="Favoritado" /> :
-                    <img src={ notFavorite } alt="Desfavoritado" />
-                  }
-                </button>
+                <div className="TypeRelease">
+                  <h2 className="mainTitle">{ news.titulo }</h2>
+                  <p>{ news.introducao }</p>
+                  <p>{ calculateTimeDifference(news.data_publicacao) }</p>
+                  <button
+                    className="link"
+                  >
+                    <a href={ news.link }>Leia mais</a>
+                  </button>
+                  <button
+                    type="button"
+                    className="favoriteButton"
+                    onClick={() => setIsFavorite(!isfavorite)}
+                  >
+                    { isfavorite ?
+                      <img src={ favorite } alt="Favoritado" /> :
+                      <img src={ notFavorite } alt="Desfavoritado" />
+                    }
+                  </button>
+                </div>
               </div>
             ))}
           </div>

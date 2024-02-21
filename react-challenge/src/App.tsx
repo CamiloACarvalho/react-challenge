@@ -1,8 +1,9 @@
 import { Route, Routes } from 'react-router-dom'
 import Header from './components/Header/Header'
 import BreakNews from './components/BreakNews/BreakNews'
-import Release from './components/Release/Release'
+import Release from './components/Note/Release'
 import News from './components/News/News'
+import RecentlyNews from './components/RecentlyNews/RecentlyNews'
 import './App.css'
 
 
@@ -19,10 +20,11 @@ function App() {
           </>
         } />
       <Route
-        path="/mostRecentely"
+        path="/mostRecently"
         element={
           <>
             <Header />
+            <RecentlyNews />
           </>
         }
       />

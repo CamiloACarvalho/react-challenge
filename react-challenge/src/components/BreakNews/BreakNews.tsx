@@ -19,7 +19,7 @@ function BreakNews () {
   const [loadedNews, setLoadedNews] = useState(6);
 
   const {
-    isFavorite,
+    favorites,
     handleFavorite,
   } = useContext(ContextFavorite);
 
@@ -117,12 +117,13 @@ function BreakNews () {
                 <button
                   type="button"
                   className="favoriteButton"
-                  onClick={ () => handleFavorite(lastBreakingNews) }
+                  onClick={() => handleFavorite(lastBreakingNews)}
                 >
-                  { isFavorite ?
-                    <img src={ favorite } alt="Favoritado" /> :
-                    <img src={ notFavorite } alt="Desfavoritado" />
-                  }
+                  {favorites.find((favorite) => favorite.id === lastBreakingNews.id) ? (
+                    <img src={favorite} alt="Favoritado" />
+                  ) : (
+                    <img src={notFavorite} alt="Desfavoritado" />
+                  )}
                 </button>
                 <p>{ lastBreakingNews.introducao }</p>
                 <button
@@ -161,15 +162,16 @@ function BreakNews () {
                     <a href={ news.link }>Leia mais</a>
                   </button>
                   <button
-                    type="button"
-                    className="favoriteButton"
-                    onClick={ () => handleFavorite(news) }
-                  >
-                    { isFavorite ?
-                      <img src={ favorite } alt="Favoritado" /> :
-                      <img src={ notFavorite } alt="Desfavoritado" />
-                    }
-                  </button>
+                  type="button"
+                  className="favoriteButton"
+                  onClick={() => handleFavorite(news)}
+                >
+                  {favorites.find((favorite) => favorite.id === news.id) ? (
+                    <img src={favorite} alt="Favoritado" />
+                  ) : (
+                    <img src={notFavorite} alt="Desfavoritado" />
+                  )}
+                </button>
                 </div>
               </div>
             ))}

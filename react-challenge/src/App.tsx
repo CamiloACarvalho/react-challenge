@@ -3,9 +3,9 @@ import Header from './components/Header/Header'
 import BreakNews from './components/BreakNews/BreakNews'
 import Release from './components/Note/Release'
 import News from './components/News/News'
+import Favorite from './components/Favorite/Favorite'
 import RecentlyNews from './components/RecentlyNews/RecentlyNews'
 import './App.css'
-
 
 function App() {
   
@@ -51,6 +51,7 @@ function App() {
         element={
           <>
             <Header />
+            <Favorite />
           </>
         }
       />

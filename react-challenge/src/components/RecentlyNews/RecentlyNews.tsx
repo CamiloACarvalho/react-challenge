@@ -16,7 +16,7 @@ function RecentlyNews () {
   const [dayNews, setDayNews] = useState<notice[]>([]);
 
   const {
-    isFavorite,
+    favorites,
     handleFavorite,
   } = useContext(ContextFavorite);
 
@@ -79,7 +79,7 @@ function RecentlyNews () {
             <Link to="/news">Notícia</Link>
             {' '}
             <Link to="/favorite">Favoritas</Link>
-            {' '}+
+            {' '}
           </div>
           <div className="recentlyNews">
             {dayNews ? (
@@ -87,7 +87,7 @@ function RecentlyNews () {
               .filter((news) => calculateTimeDifference(news.data_publicacao) <= 48)
               .map((news) => (
                 <div key={news.id}>
-                  { news.tipo === 'release' ? (
+                  { news.tipo === 'Release' ? (
                     <div className="TypeRelease">
                       <h2 className="mainTitle">{news.titulo}</h2>
                       <p>{news.introducao}</p>
@@ -103,9 +103,9 @@ function RecentlyNews () {
                       <button
                         type="button"
                         className="favoriteButton"
-                        onClick={() => handleFavorite(news) }
+                        onClick={() => handleFavorite(news)}
                       >
-                        {isFavorite ? (
+                        {favorites.find((favorite) => favorite.id === news.id) ? (
                           <img src={favorite} alt="Favoritado" />
                         ) : (
                           <img src={notFavorite} alt="Desfavoritado" />
@@ -133,9 +133,9 @@ function RecentlyNews () {
                       <button
                         type="button"
                         className="favoriteButton"
-                        onClick={ () => handleFavorite(news) }
+                        onClick={() => handleFavorite(news)}
                       >
-                        {isFavorite ? (
+                        {favorites.find((favorite) => favorite.id === news.id) ? (
                           <img src={favorite} alt="Favoritado" />
                         ) : (
                           <img src={notFavorite} alt="Desfavoritado" />

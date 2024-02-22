@@ -19,7 +19,7 @@ function News () {
   const [loadedNews, setLoadedNews] = useState(6);
 
   const {
-    isFavorite,
+    favorites,
     handleFavorite,
   } = useContext(ContextFavorite);
 
@@ -100,7 +100,7 @@ function News () {
           </div>
           <div className="allNews">
           {allNews
-            // Filtra somente as notícias do tipo release
+            // Filtra somente as notícias do tipo notícia
             .filter((news) => news.tipo === 'Notícia')
             .map((news) => (
               <div key={ news.id }>
@@ -120,12 +120,13 @@ function News () {
                 <button
                   type="button"
                   className="favoriteButton"
-                  onClick={() => handleFavorite(news) }
+                  onClick={() => handleFavorite(news)}
                 >
-                  { isFavorite ?
-                    <img src={ favorite } alt="Favoritado" /> :
-                    <img src={ notFavorite } alt="Desfavoritado" />
-                  }
+                  {favorites.find((favorite) => favorite.id === news.id) ? (
+                    <img src={favorite} alt="Favoritado" />
+                  ) : (
+                     <img src={notFavorite} alt="Desfavoritado" />
+                  )}
                 </button>
               </div>
             ))}

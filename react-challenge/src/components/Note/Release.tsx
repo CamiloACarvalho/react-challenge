@@ -17,7 +17,7 @@ function Release () {
   const [loadedNews, setLoadedNews] = useState(6);
 
   const {
-    isFavorite,
+    favorites,
     handleFavorite,
   } = useContext(ContextFavorite);
 
@@ -109,12 +109,13 @@ function Release () {
                 <button
                   type="button"
                   className="favoriteButton"
-                  onClick={() => handleFavorite(news) }
+                  onClick={() => handleFavorite(news)}
                 >
-                  { isFavorite ?
-                    <img src={ favorite } alt="Favoritado" /> :
-                    <img src={ notFavorite } alt="Desfavoritado" />
-                  }
+                  {favorites.find((favorite) => favorite.id === news.id) ? (
+                    <img src={favorite} alt="Favoritado" />
+                  ) : (
+                    <img src={notFavorite} alt="Desfavoritado" />
+                  )}
                 </button>
               </div>
             ))}

@@ -1,0 +1,23 @@
+.main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0E0E0ED9;
+}
+
+.logo {
+  width: 256px;
+  height: 211px;
+}
+
+.poller-one-regular {
+  font-family: "Poller One", serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #FFFFFF;
+  font-size: 86px;
+}
+
+.link {
+  margin-right: 15px;
+}

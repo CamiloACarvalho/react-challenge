@@ -1,6 +1,71 @@
 .image {
-  width: 500px;
-  height: auto;
-  border-radius: 10px;
+  width: 754px;
+  height: 485px;
+  border-radius: 2px;
+  border: 1px solid #000;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin-top: 319px;
+  margin-left: 199px;
+}
+
+/* .breakNews {
+  display: flex;
+  flex-direction:row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+} */
+
+.poppins-semibold {
+  font-family: "Poppins";
+  font-weight: 600;
+  font-style: normal;
+  font-size: 14px;
+  color: #C31815;
+}
+
+.poppins-regular {
+  font-family: "Poppins";
+  font-weight: 400;
+  font-style: normal;
+  font-size: 15px;
+  color: #000;
+}
+
+.ibm-plex {
+  font-family: "IBM Plex Sans";
+  font-weight: 600;
+  font-style: normal;
+  font-size: 32px;
+}
+
+.favoriteImage {
+  width: 18px;
+  height: 18px;
+}
+
+.linkBtn {
+  width: 167px;
+  height: 36px;
+  color: #000;
+  background-color: #05D465;
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.poppins-a {
+  font-family: "Poppins";
+  font-weight: 700;
+  font-style: normal;
+  font-size: 14px;
+  color: #000;
+}
+
+.linkBtn a {
+  color: inherit;
+  text-decoration: none;
 }

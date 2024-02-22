@@ -86,11 +86,11 @@ function BreakNews () {
     const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
     if (days > 0) {
-      return `Published ${days} ${days === 1 ? 'day' : 'days'} ago`;
+      return `Publicado há ${days} ${days === 1 ? 'dia' : 'dias'} atrás`;
     } else if (hours > 0) {
-      return `Published ${hours} ${hours === 1 ? 'hour' : 'hours'} ago`;
+      return `Publicado há ${hours} ${hours === 1 ? 'hora' : 'horas'} atrás`;
     } else {
-      return `Published ${minutes} ${minutes === 1 ? 'minute' : 'minutes'} ago`;
+      return `Publicado há ${minutes} ${minutes === 1 ? 'minuto' : 'minutos'} atrás`;
     }
   };
 
@@ -103,35 +103,32 @@ function BreakNews () {
       { loading ? (
         <img className="loading" src={ loadGif } alt="loading" />
       ) : (
-        <section className="rencentelyNews">
-          <h3 className="subTitle">Notícia de última hora:</h3>
-          <div>
+        <section>
+          <div className={ style.lastBreakingNews }>
             { lastBreakingNews && (
-              <div>
+              <div className={ style.mainNotice }>
                 <img
-                  className={style.image}
+                  className={ style.image }
                   src={ urlImagem(lastBreakingNews?.imageUrl) }
                   alt={ lastBreakingNews.titulo } 
                 /> 
-                <h2 className="mainTitle">{ lastBreakingNews.titulo }</h2>
-                <button
-                  type="button"
-                  className="favoriteButton"
-                  onClick={() => handleFavorite(lastBreakingNews)}
-                >
-                  {favorites.find((favorite) => favorite.id === lastBreakingNews.id) ? (
-                    <img src={favorite} alt="Favoritado" />
-                  ) : (
-                    <img src={notFavorite} alt="Desfavoritado" />
-                  )}
-                </button>
-                <p>{ lastBreakingNews.introducao }</p>
-                <button
-                  className="link"
-                >
-                  <a href={ lastBreakingNews.link }>Leia mais</a>
-                </button>
-                <p>{ calculateTimeDifference(lastBreakingNews.data_publicacao) }</p>
+                <div className={ style.cardNews }>
+                  <h3 className={ style['poppins-semibold']  }>Notícia mais recente</h3>
+                  <img
+                    src={favorites.find((favorite) => favorite.id === lastBreakingNews.id) ? favorite : notFavorite}
+                    alt={favorites.find((favorite) => favorite.id === lastBreakingNews.id) ? "Favoritado" : "Desfavoritado"}
+                    className={ style.favoriteImage }
+                    onClick={ () => handleFavorite(lastBreakingNews) }
+                  />
+                  <h2 className={ style['ibm-plex'] }>{ lastBreakingNews.titulo }</h2>
+                  <p className={ style['poppins-regular'] }>{ lastBreakingNews.introducao }</p>
+                  <button
+                    className={ style.linkBtn }
+                  >
+                    <a className={ style['poppins-a'] } href={ lastBreakingNews.link }>Leia a notícia aqui</a>
+                  </button>
+                  <p>{ calculateTimeDifference(lastBreakingNews.data_publicacao) }</p>
+                </div>
               </div>
             )}
           </div>
@@ -161,17 +158,12 @@ function BreakNews () {
                   >
                     <a href={ news.link }>Leia mais</a>
                   </button>
-                  <button
-                  type="button"
-                  className="favoriteButton"
-                  onClick={() => handleFavorite(news)}
-                >
-                  {favorites.find((favorite) => favorite.id === news.id) ? (
-                    <img src={favorite} alt="Favoritado" />
-                  ) : (
-                    <img src={notFavorite} alt="Desfavoritado" />
-                  )}
-                </button>
+                  <img
+                    src={favorites.find((favorite) => favorite.id === news.id) ? favorite : notFavorite}
+                    alt={favorites.find((favorite) => favorite.id === news.id) ? "Favoritado" : "Desfavoritado"}
+                    className={ style.favoriteImage }
+                    onClick={ () => handleFavorite(news) }
+                  />
                 </div>
               </div>
             ))}

@@ -16,7 +16,7 @@ function BreakNews () {
   // Esse useState é para rendererizar todas as notícias
   const [allNews, setAllNews] = useState<notice[]>([]);
   // useState para armazenar o número de notícias carregadas
-  const [loadedNews, setLoadedNews] = useState(6);
+  const [loadedNews, setLoadedNews] = useState(10);
 
   const {
     favorites,
@@ -42,7 +42,7 @@ function BreakNews () {
 
   // Função para carregar mais notícias
   const handleLoadMore = () => {
-    setLoadedNews(loadedNews + 6);
+    setLoadedNews(loadedNews + 3);
   };
 
   // Função para encontrar a notícia mais recente
@@ -86,11 +86,11 @@ function BreakNews () {
     const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
     if (days > 0) {
-      return `Publicado há ${days} ${days === 1 ? 'dia' : 'dias'} atrás`;
+      return `${days} ${days === 1 ? 'dia' : 'dias'} atrás`;
     } else if (hours > 0) {
-      return `Publicado há ${hours} ${hours === 1 ? 'hora' : 'horas'} atrás`;
+      return `${hours} ${hours === 1 ? 'hora' : 'horas'} atrás`;
     } else {
-      return `Publicado há ${minutes} ${minutes === 1 ? 'minuto' : 'minutos'} atrás`;
+      return `${minutes} ${minutes === 1 ? 'minuto' : 'minutos'} atrás`;
     }
   };
 
@@ -156,13 +156,13 @@ function BreakNews () {
             .map((news) => (
               <div key={ news.id }>
                 <div className={ style.everyNews }>
-                  <h2 className="mainTitle">{ news.titulo }</h2>
-                  <p>{ news.introducao }</p>
+                  <h2 className={ style['ibm-plex-othersNews'] }>{ news.titulo }</h2>
+                  <p className={ style['nunito-sans'] }>{ news.introducao }</p> 
                   <p>{ calculateTimeDifference(news.data_publicacao) }</p>
                   <button
-                    className="link"
+                    className={ style.linkBtn }
                   >
-                    <a href={ news.link }>Leia mais</a>
+                    <a className={ style['poppins-a'] } href={ news.link }>Leia a notícia aqui</a>
                   </button>
                   <img
                     src={favorites.find((favorite) => favorite.id === news.id) ? favorite : notFavorite}

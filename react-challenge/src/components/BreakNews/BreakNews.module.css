@@ -136,7 +136,10 @@
 .allNews {
   margin-top: 36 px;
   margin-left: 199px;
-
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .everyNews {
@@ -146,6 +149,52 @@
   align-items: center;
   width: 438px;
   height: 331px;
-  border: 1px solid #000;
-  box-shadow: 0 0 10px #2A2A2A3D
+  box-shadow: 0 0 10px #2A2A2A3D;
+  margin-right: 38px;
+  margin-bottom: 54px;
+}
+
+.ibm-plex-othersNews {
+  font-family: "IBM Plex Sans";
+  font-weight: 600;
+  font-style: normal;
+  font-size: 18px;
+  margin-top: 36px;
+  margin-bottom: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+  text-align: justify;
+}
+.nunito-sans {
+  font-family: "Nunito Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 15px;
+  font-variation-settings:
+    "wdth" 100,
+    "YTLC" 500;
+  ;
+  display: flex;
+  text-align: justify;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.favImage {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.footerCard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }

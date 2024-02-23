@@ -101,7 +101,7 @@ function BreakNews () {
   return (
     <div>
       { loading ? (
-        <img className="loading" src={ loadGif } alt="loading" />
+        <img className={ style.loading } src={ loadGif } alt="loading" />
       ) : (
         <section>
           <div className={ style.lastBreakingNews }>
@@ -138,24 +138,24 @@ function BreakNews () {
               </div>
             )}
           </div>
-          <div className="links">
-            <Link to="/mostRecently">Mais recentes</Link>
+          <div className={ style.links }>
+            <Link className={ style.subLink } to="/mostRecently">Mais recentes</Link>
+            {' '} 
+            <Link className={ style.subLink } to="/release">Release</Link>
             {' '}
-            <Link to="/release">Release</Link>
+            <Link className={ style.subLink } to="/news">Notícia</Link>
             {' '}
-            <Link to="/news">Notícia</Link>
-            {' '}
-            <Link to="/favorite">Favoritas</Link>
+            <Link className={ style.subLink } to="/favorite">Favoritas</Link>
             {' '}
           </div>
-          <div className="allNews">
+          <div className={ style.allNews }>
           {allNews
             // Filtra as notícias, removendo a última notícia mais recente da lista
             .filter((news) => news.id !== lastBreakingNews?.id)
             // renderiza as outras notícias (menos recentes)
             .map((news) => (
               <div key={ news.id }>
-                <div className="TypeRelease">
+                <div className={ style.everyNews }>
                   <h2 className="mainTitle">{ news.titulo }</h2>
                   <p>{ news.introducao }</p>
                   <p>{ calculateTimeDifference(news.data_publicacao) }</p>
@@ -175,7 +175,7 @@ function BreakNews () {
             ))}
           </div>
           <button
-            className="loadMore"
+            className={ style.loadMore }
             type="button"
             onClick={ handleLoadMore }
           >

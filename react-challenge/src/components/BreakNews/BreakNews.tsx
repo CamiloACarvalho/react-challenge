@@ -113,21 +113,27 @@ function BreakNews () {
                   alt={ lastBreakingNews.titulo } 
                 /> 
                 <div className={ style.cardNews }>
-                  <h3 className={ style['poppins-semibold']  }>Notícia mais recente</h3>
-                  <img
-                    src={favorites.find((favorite) => favorite.id === lastBreakingNews.id) ? favorite : notFavorite}
-                    alt={favorites.find((favorite) => favorite.id === lastBreakingNews.id) ? "Favoritado" : "Desfavoritado"}
-                    className={ style.favoriteImage }
-                    onClick={ () => handleFavorite(lastBreakingNews) }
-                  />
-                  <h2 className={ style['ibm-plex'] }>{ lastBreakingNews.titulo }</h2>
-                  <p className={ style['poppins-regular'] }>{ lastBreakingNews.introducao }</p>
-                  <button
-                    className={ style.linkBtn }
-                  >
-                    <a className={ style['poppins-a'] } href={ lastBreakingNews.link }>Leia a notícia aqui</a>
-                  </button>
-                  <p>{ calculateTimeDifference(lastBreakingNews.data_publicacao) }</p>
+                  <div className={ style.topo }>
+                    <h3 className={ style['poppins-semibold']  }>Notícia mais recente</h3>
+                    <img
+                      src={favorites.find((favorite) => favorite.id === lastBreakingNews.id) ? favorite : notFavorite}
+                      alt={favorites.find((favorite) => favorite.id === lastBreakingNews.id) ? "Favoritado" : "Desfavoritado"}
+                      className={ style.favoriteImage }
+                      onClick={ () => handleFavorite(lastBreakingNews) }
+                    />
+                  </div>
+                  <div className={ style.center }>
+                    <h2 className={ style['ibm-plex'] }>{ lastBreakingNews.titulo }</h2>
+                    <p className={ style['poppins-regular'] }>{ lastBreakingNews.introducao }</p>
+                  </div>  
+                  <div className={ style.botton } >
+                    <p>{ calculateTimeDifference(lastBreakingNews.data_publicacao) }</p>
+                    <button
+                      className={ style.linkBtn }
+                    >
+                      <a className={ style['poppins-a'] } href={ lastBreakingNews.link }>Leia a notícia aqui</a>
+                    </button>
+                  </div>  
                 </div>
               </div>
             )}

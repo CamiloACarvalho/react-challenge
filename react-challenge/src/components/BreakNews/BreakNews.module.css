@@ -1,19 +1,22 @@
+.mainNotice  {
+  display: flex;
+  flex-direction:row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 319px;
+  margin-left: 199px;
+  margin-right: 199px;
+  margin-bottom: 100px;
+}
+
 .image {
   width: 754px;
   height: 485px;
   border-radius: 2px;
   border: 1px solid #000;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  margin-top: 319px;
-  margin-left: 199px;
 }
-
-/* .breakNews {
-  display: flex;
-  flex-direction:row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-} */
 
 .poppins-semibold {
   font-family: "Poppins";
@@ -36,6 +39,7 @@
   font-weight: 600;
   font-style: normal;
   font-size: 32px;
+  margin-bottom: 20px;
 }
 
 .favoriteImage {
@@ -69,3 +73,29 @@
   color: inherit;
   text-decoration: none;
 }
+
+.cardNews {
+  width: 540px;
+  height: 328px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.topo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.botton {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+

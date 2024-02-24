@@ -157,30 +157,36 @@ function BreakNews () {
               <div key={ news.id }>
                 <div className={ style.everyNews }>
                   <h2 className={ style['ibm-plex-othersNews'] }>{ news.titulo }</h2>
-                  <p className={ style['nunito-sans'] }>{ news.introducao }</p> 
-                  <p>{ calculateTimeDifference(news.data_publicacao) }</p>
-                  <button
-                    className={ style.linkBtn }
-                  >
-                    <a className={ style['poppins-a'] } href={ news.link }>Leia a notícia aqui</a>
-                  </button>
-                  <img
-                    src={favorites.find((favorite) => favorite.id === news.id) ? favorite : notFavorite}
-                    alt={favorites.find((favorite) => favorite.id === news.id) ? "Favoritado" : "Desfavoritado"}
-                    className={ style.favoriteImage }
-                    onClick={ () => handleFavorite(news) }
-                  />
+                  <p className={ style['nunito-sans'] }>{ news.introducao }</p>
+                  <div className={ style.lineEnd }>
+                    <p>{ calculateTimeDifference(news.data_publicacao) }</p>
+                    <button
+                      className={ style.linkBtn }
+                    >
+                      <a className={ style['poppins-a'] } href={ news.link }>Leia a notícia aqui</a>
+                    </button>
+                  </div>
+                  <div className={ style.footerCard }>
+                    <img
+                      src={favorites.find((favorite) => favorite.id === news.id) ? favorite : notFavorite}
+                      alt={favorites.find((favorite) => favorite.id === news.id) ? "Favoritado" : "Desfavoritado"}
+                      className={ style.favoriteImage }
+                      onClick={ () => handleFavorite(news) }
+                    />
+                  </div>
                 </div>
               </div>
             ))}
           </div>
-          <button
-            className={ style.loadMore }
-            type="button"
-            onClick={ handleLoadMore }
-          >
-            Carregar mais
-          </button>
+          <div className={ style.endPage }>
+            <button
+              className={ style.loadMore }
+              type="button"
+              onClick={ handleLoadMore }
+            >
+              MAIS NOTÍCIAS
+            </button>
+          </div>
         </section>
       )}
     </div>

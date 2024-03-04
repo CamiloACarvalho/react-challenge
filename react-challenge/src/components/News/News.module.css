@@ -3,7 +3,7 @@
   flex-direction:row;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin-top: 108px;
   margin-left: 199px;
   margin-right: 199px;
@@ -19,8 +19,8 @@
 }
 
 .image {
-  width: 754px;
-  height: 485px;
+  width: 500px;
+  height: 300px;
   border-radius: 5px;
   border: 1px solid #000;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);

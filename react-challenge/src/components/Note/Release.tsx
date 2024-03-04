@@ -15,7 +15,7 @@ function Release () {
   // Esse useState é para rendererizar todas as notícias
   const [allNews, setAllNews] = useState<notice[]>([]);
   // useState para armazenar o número de notícias carregadas
-  const [loadedNews, setLoadedNews] = useState(10);
+  const [loadedNews, setLoadedNews] = useState();
 
   const {
     favorites,
@@ -37,11 +37,6 @@ function Release () {
 
     fetchData();
   }, [loadedNews]);
-
-  // Função para carregar mais notícias
-  const handleLoadMore = () => {
-    setLoadedNews(loadedNews + 3);
-  };
 
   let datePublication: number | null = null;
 
@@ -119,15 +114,6 @@ function Release () {
                 </div>
               </div>
             ))}
-          </div>
-          <div className={ style.endPage }>
-            <button
-              className={ style.loadMore }
-              type="button"
-              onClick={ handleLoadMore }
-            >
-              MAIS NOTÍCIAS
-            </button>
           </div>
         </section>
       )}

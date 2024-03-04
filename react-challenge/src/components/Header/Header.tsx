@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import logo from '../../image/logoTrybe.png';
+import logo from '../../image/logo.png';
 import style from './Header.module.css';
 import home from '../../image/home.png';
 
@@ -11,7 +11,7 @@ function Header () {
         alt="Logo da Trybe"
         className={ style.logo }  
       />
-      <h1 className={ style['poller-one-regular'] }>TRYBE NEWS</h1>
+      <h1 className={ style['poller-one-regular'] }>MILO NEWS</h1>
       <Link to="/" className={ style.link }>
         <img 
           src={home}

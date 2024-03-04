@@ -85,59 +85,64 @@ function News () {
   return (
     <div>
       { loading ? (
-        <img className="loading" src={ loadGif } alt="loading" />
+        <img className={ style.loading } src={ loadGif } alt="loading" />
       ) : (
         <section>
-          <div className="links">
-            <Link to="/mostRecently">Mais recentes</Link>
+          <div className={ style.links }>
+            <Link className={ style.subLink } to="/mostRecently">Mais recentes</Link>
             {' '}
-            <Link to="/release">Release</Link>
+            <Link className={ style.subLink } to="/release">Release</Link>
             {' '}
-            <Link to="/news">Notícia</Link>
+            <Link className={ style.subLink } to="/news">Notícia</Link>
             {' '}
-            <Link to="/favorite">Favoritas</Link>
+            <Link className={ style.subLink } to="/favorite">Favoritas</Link>
             {' '}
           </div>
-          <div className="allNews">
+          <div className={ style.lastBreakingNews }>
           {allNews
             // Filtra somente as notícias do tipo notícia
             .filter((news) => news.tipo === 'Notícia')
             .map((news) => (
               <div key={ news.id }>
-                <img
-                  className={ style.image }
-                  src={ urlImagem(news?.imageUrl) }
-                  alt={ news.titulo }
-                />
-                <h2 className="mainTitle">{ news.titulo }</h2>
-                <p>{ news.introducao }</p>
-                <p>{ calculateTimeDifference(news.data_publicacao) }</p>
-                <button
-                  className="link"
-                >
-                  <a href={ news.link }>Leia mais</a>
-                </button>
-                <button
-                  type="button"
-                  className="favoriteButton"
-                  onClick={() => handleFavorite(news)}
-                >
-                  {favorites.find((favorite) => favorite.id === news.id) ? (
-                    <img src={favorite} alt="Favoritado" />
-                  ) : (
-                     <img src={notFavorite} alt="Desfavoritado" />
-                  )}
-                </button>
+                <div className={ style.mainNotice }>
+                  <img
+                    className={ style.image }
+                    src={ urlImagem(news?.imageUrl) }
+                    alt={ news.titulo }
+                  />
+                  <div className={ style.cardNews }>
+                    <div className={ style.topo }>
+                      <h3 className={ style['ibm-plex-othersNews'] }>{ news.titulo }</h3>
+                      <img
+                        src={favorites.find((favorite) => favorite.id === news.id) ? favorite : notFavorite}
+                        alt={favorites.find((favorite) => favorite.id === news.id) ? "Favoritado" : "Desfavoritado"}
+                        className={ style.favoriteImage }
+                        onClick={ () => handleFavorite(news) }
+                      />
+                    </div>                  
+                    <p className={ style['poppins-regular'] }>{ news.introducao }</p>
+                    <div className={ style.lineEnd }>
+                      <p>{ calculateTimeDifference(news.data_publicacao) }</p>
+                      <button
+                        className={ style.linkBtn }
+                      >
+                        <a className={ style['poppins-a'] } href={ news.link }>Leia mais</a>
+                      </button>
+                    </div>
+                  </div>  
+                </div>
               </div>
             ))}
           </div>
-          <button
-            className="loadMore"
-            type="button"
-            onClick={ handleLoadMore }
-          >
-            Carregar mais
-          </button>
+          <div className={ style.endPage }>
+            <button
+              className={ style.loadMore }
+              type="button"
+              onClick={ handleLoadMore }
+            >
+              MAIS NOTÍCIAS
+            </button>
+          </div>
         </section>
       )}
     </div>

@@ -59,7 +59,7 @@
   width: 167px;
   height: 36px;
   color: #000;
-  background-color: #05D465;
+  background-color: #ffb574;
   padding: 10px;
   border: none;
   border-radius: 5px;
@@ -130,7 +130,7 @@
 
 .subLink:hover {
   text-decoration: underline;
-  text-decoration-color: #C31815;
+  text-decoration-color: #892460;
   text-decoration-thickness: 0.13em;
 }
 
@@ -207,10 +207,10 @@
 }
 
 .loadMore {
-  color: #C31815;
+  color: #25bdd4;
   background-color: #ffffff00;
   padding: 10px;
-  border: 1px solid #C31815;
+  border: 1px solid #25bdd4;
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -223,4 +223,12 @@
   font-weight: 500;
   font-style: normal;
   font-size: 14px;
+}
+
+.loadMore:hover{
+  cursor: pointer;
+  transition: 5ms;
+  background-color: #09aedb;
+  color: white;
+
 }

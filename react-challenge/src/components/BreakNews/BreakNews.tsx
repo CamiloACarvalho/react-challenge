@@ -16,7 +16,7 @@ function BreakNews () {
   // Esse useState é para rendererizar todas as notícias
   const [allNews, setAllNews] = useState<notice[]>([]);
   // useState para armazenar o número de notícias carregadas
-  const [loadedNews, setLoadedNews] = useState(10);
+  const [loadedNews, setLoadedNews] = useState(9);
 
   const {
     favorites,

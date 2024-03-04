@@ -70,11 +70,11 @@ function News () {
     const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
     if (days > 0) {
-      return `Published ${days} ${days === 1 ? 'day' : 'days'} ago`;
+      return `Publicado há ${days} ${days === 1 ? 'dia' : 'dias'} atrás`;
     } else if (hours > 0) {
-      return `Published ${hours} ${hours === 1 ? 'hour' : 'hours'} ago`;
+      return `Publicado há ${hours} ${hours === 1 ? 'hora' : 'horas'} atrás`;
     } else {
-      return `Published ${minutes} ${minutes === 1 ? 'minute' : 'minutes'} ago`;
+      return `Publicado há ${minutes} ${minutes === 1 ? 'minuto' : 'minutos'} atrás`;
     }
   };
 

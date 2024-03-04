@@ -1,6 +1,196 @@
-.image {
-  width: 500px;
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
   height: auto;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.poppins-semibold {
+  font-family: "Poppins";
+  font-weight: 600;
+  font-style: normal;
+  font-size: 14px;
+  color: #C31815;
+}
+
+.poppins-regular {
+  font-family: "Poppins";
+  font-weight: 400;
+  font-style: normal;
+  font-size: 15px;
+  color: #000;
+}
+
+.ibm-plex {
+  font-family: "IBM Plex Sans";
+  font-weight: 600;
+  font-style: normal;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.favoriteImage {
+  width: 40px;
+  height: 40px;
+}
+
+.linkBtn {
+  width: 167px;
+  height: 36px;
+  color: #000;
+  background-color: #ffb574;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.poppins-a {
+  font-family: "Poppins";
+  font-weight: 700;
+  font-style: normal;
+  font-size: 14px;
+  color: #000;
+}
+
+.linkBtn a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cardNews {
+  width: 540px;
+  height: 328px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.links {
+  background-color: rgba(255, 255, 255, 0.85);
+  height: 67px;
+  display: flex;
+  text-align: start;
+  margin-left: 199px;
+  margin-top: 174px;
+}
+
+.subLink {
+  margin-right: 35px;
+  font-family: "Poppins";
+  font-weight: 600;
+  font-style: normal;
+  font-size: 18px;
+  color: #000;
+  color: inherit;
+  text-decoration: none;
+}
+
+.subLink:hover {
+  text-decoration: underline;
+  text-decoration-color: #892460;
+  text-decoration-thickness: 0.13em;
+}
+
+.allNews {
+  margin-top: 36 px;
+  margin-left: 199px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.everyNews {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 438px;
+  height: 331px;
+  box-shadow: 0 0 10px #2A2A2A3D;
+  margin-right: 38px;
+  margin-bottom: 54px;
+}
+
+.ibm-plex-othersNews {
+  font-family: "IBM Plex Sans";
+  font-weight: 600;
+  font-style: normal;
+  font-size: 18px;
+  margin-top: 36px;
+  margin-bottom: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+  text-align: justify;
+}
+.nunito-sans {
+  font-family: "Nunito Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 15px;
+  font-variation-settings:
+    "wdth" 100,
+    "YTLC" 500;
+  ;
+  display: flex;
+  text-align: justify;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.lineEnd {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 25px;
+  margin-left: 25px;
+  margin-bottom: 10px;
+}
+
+.time {
+  padding: 10px;
+}
+
+.endPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.loadMore {
+  color: #25bdd4;
+  background-color: #ffffff00;
+  padding: 10px;
+  border: 1px solid #25bdd4;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  width: 220px;
+  height: 60px;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-style: normal;
+  font-size: 14px;
+}
+
+.loadMore:hover{
+  cursor: pointer;
+  transition: 5ms;
+  background-color: #09aedb;
+  color: white;
+
 }

@@ -31,10 +31,18 @@ const FavoritesPage: React.FC = () => {
     datePublication = new Date(parsedYear, parsedMonth, parsedDay, parsedHour, parsedMinute).getTime();
 
     const diffTime = today.getTime() - datePublication;
-  
-    const hours = Math.floor(diffTime / (1000 * 60 * 60));
 
-    return hours;
+    const minutes = Math.floor(diffTime / (1000 * 60));
+    const hours = Math.floor(diffTime / (1000 * 60 * 60));
+    const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+    if (days > 0) {
+      return `Publicado há ${days} ${days === 1 ? 'dia' : 'dias'} atrás`;
+    } else if (hours > 0) {
+      return `Publicado há ${hours} ${hours === 1 ? 'hora' : 'horas'} atrás`;
+    } else {
+      return `Publicado há ${minutes} ${minutes === 1 ? 'minuto' : 'minutos'} atrás`;
+    }
   };
 
   return (
@@ -55,12 +63,7 @@ const FavoritesPage: React.FC = () => {
             <div className={ style.everyNews }>
               <h2 className={ style['ibm-plex-othersNews'] }>{favorite.titulo}</h2>
               <p className={ style['nunito-sans'] }>{favorite.introducao}</p>
-              <p className={ style.time }>
-                {`Publicado há
-                  ${calculateTimeDifference(favorite.data_publicacao)} 
-                  ${calculateTimeDifference(favorite.data_publicacao) === 1 ? 'hora' : 'horas'}
-                `}
-              </p>
+              <p className={ style.time }>{ calculateTimeDifference(favorite.data_publicacao) }</p>
               <div className={ style.lineEnd } >
                 <button className={ style.linkBtn }>
                   <a className={ style['poppins-a'] } href={favorite.link}>Leia mais</a>

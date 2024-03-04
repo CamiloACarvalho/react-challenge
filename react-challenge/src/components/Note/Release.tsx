@@ -7,6 +7,7 @@ import { notice } from '../../types/Types';
 import loadGif from '../../image/loading-2874.gif'
 import favorite from '../../image/favoritado.png'
 import notFavorite from '../../image/desfavoritado.png'
+import style from './Release.module.css'
 
 function Release () {
   // esse useState é para armazenar o estado de carregamento
@@ -14,7 +15,7 @@ function Release () {
   // Esse useState é para rendererizar todas as notícias
   const [allNews, setAllNews] = useState<notice[]>([]);
   // useState para armazenar o número de notícias carregadas
-  const [loadedNews, setLoadedNews] = useState(6);
+  const [loadedNews, setLoadedNews] = useState(10);
 
   const {
     favorites,
@@ -27,7 +28,7 @@ function Release () {
       try {
         const newsData = await Api();
         setLoading(false);
-        setAllNews(newsData);
+        setAllNews(newsData.slice(0, loadedNews));
       } catch (error) {
         console.error('Erro ao buscar dados:', error);
         setLoading(false);
@@ -39,7 +40,7 @@ function Release () {
 
   // Função para carregar mais notícias
   const handleLoadMore = () => {
-    setLoadedNews(loadedNews + 6);
+    setLoadedNews(loadedNews + 3);
   };
 
   let datePublication: number | null = null;
@@ -68,65 +69,66 @@ function Release () {
     const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
     if (days > 0) {
-      return `Published ${days} ${days === 1 ? 'day' : 'days'} ago`;
+      return `Publicado há ${days} ${days === 1 ? 'dia' : 'dias'} atrás`;
     } else if (hours > 0) {
-      return `Published ${hours} ${hours === 1 ? 'hour' : 'hours'} ago`;
+      return `Publicado há ${hours} ${hours === 1 ? 'hora' : 'horas'} atrás`;
     } else {
-      return `Published ${minutes} ${minutes === 1 ? 'minute' : 'minutes'} ago`;
+      return `Publicado há ${minutes} ${minutes === 1 ? 'minuto' : 'minutos'} atrás`;
     }
   };
 
   return (
     <div>
       { loading ? (
-        <img className="loading" src={ loadGif } alt="loading" />
+        <img className={ style.loading } src={ loadGif } alt="loading" />
       ) : (
         <section>
-          <div className="links">
-            <Link to="/mostRecently">Mais recentes</Link>
+          <div className={ style.links }>
+            <Link className={ style.subLink } to="/mostRecently">Mais recentes</Link>
             {' '}
-            <Link to="/release">Release</Link>
+            <Link className={ style.subLink } to="/release">Release</Link>
             {' '}
-            <Link to="/news">Notícia</Link>
+            <Link className={ style.subLink } to="/news">Notícia</Link>
             {' '}
-            <Link to="/favorite">Favoritas</Link>
+            <Link className={ style.subLink } to="/favorite">Favoritas</Link>
             {' '}
           </div>
-          <div className="allNews">
+          <div className={ style.allNews }>
           {allNews
             // Filtra somente as notícias do tipo release
             .filter((news) => news.tipo === 'Release')
             .map((news) => (
               <div key={ news.id }>
-                <h2 className="mainTitle">{ news.titulo }</h2>
-                <p>{ news.introducao }</p>
-                <p>{ calculateTimeDifference(news.data_publicacao) }</p>
-                <button
-                  className="link"
-                >
-                  <a href={ news.link }>Leia mais</a>
-                </button>
-                <button
-                  type="button"
-                  className="favoriteButton"
-                  onClick={() => handleFavorite(news)}
-                >
-                  {favorites.find((favorite) => favorite.id === news.id) ? (
-                    <img src={favorite} alt="Favoritado" />
-                  ) : (
-                    <img src={notFavorite} alt="Desfavoritado" />
-                  )}
-                </button>
+                <div className={ style.everyNews }>
+                  <h2 className={ style['ibm-plex-othersNews'] }>{ news.titulo }</h2>
+                  <p className={ style['nunito-sans'] }>{ news.introducao }</p>
+                  <p className={ style.time }>{ calculateTimeDifference(news.data_publicacao) }</p>
+                  <div className={ style.lineEnd } >
+                    <button
+                      className={ style.linkBtn }
+                    >
+                      <a className={ style['poppins-a'] } href={ news.link }>Leia mais</a>
+                    </button>
+                    <img
+                        src={favorites.find((favorite) => favorite.id === news.id) ? favorite : notFavorite}
+                        alt={favorites.find((favorite) => favorite.id === news.id) ? "Favoritado" : "Desfavoritado"}
+                        className={ style.favoriteImage }
+                        onClick={ () => handleFavorite(news) }
+                      />
+                  </div>
+                </div>
               </div>
             ))}
           </div>
-          <button
-            className="loadMore"
-            type="button"
-            onClick={ handleLoadMore }
-          >
-            Carregar mais
-          </button>
+          <div className={ style.endPage }>
+            <button
+              className={ style.loadMore }
+              type="button"
+              onClick={ handleLoadMore }
+            >
+              MAIS NOTÍCIAS
+            </button>
+          </div>
         </section>
       )}
     </div>

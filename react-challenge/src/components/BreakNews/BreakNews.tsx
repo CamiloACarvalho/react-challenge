@@ -72,11 +72,11 @@ function BreakNews () {
     const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
     if (days > 0) {
-      return `${days} ${days === 1 ? 'dia' : 'dias'} atrás`;
+      return `Publicado há ${days} ${days === 1 ? 'dia' : 'dias'} atrás`;
     } else if (hours > 0) {
-      return `${hours} ${hours === 1 ? 'hora' : 'horas'} atrás`;
+      return `Publicado há ${hours} ${hours === 1 ? 'hora' : 'horas'} atrás`;
     } else {
-      return `${minutes} ${minutes === 1 ? 'minuto' : 'minutos'} atrás`;
+      return `Publicado há ${minutes} ${minutes === 1 ? 'minuto' : 'minutos'} atrás`;
     }
   };
 

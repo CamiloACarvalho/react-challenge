@@ -14,8 +14,6 @@ function Release () {
   const [loading, setLoading] = useState(true);
   // Esse useState é para rendererizar todas as notícias
   const [allNews, setAllNews] = useState<notice[]>([]);
-  // useState para armazenar o número de notícias carregadas
-  const [loadedNews, setLoadedNews] = useState();
 
   const {
     favorites,
@@ -28,7 +26,7 @@ function Release () {
       try {
         const newsData = await Api();
         setLoading(false);
-        setAllNews(newsData.slice(0, loadedNews));
+        setAllNews(newsData);
       } catch (error) {
         console.error('Erro ao buscar dados:', error);
         setLoading(false);
@@ -36,7 +34,7 @@ function Release () {
     };
 
     fetchData();
-  }, [loadedNews]);
+  }, []);
 
   let datePublication: number | null = null;
 

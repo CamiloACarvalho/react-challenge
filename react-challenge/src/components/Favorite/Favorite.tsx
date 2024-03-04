@@ -37,80 +37,42 @@ const FavoritesPage: React.FC = () => {
     return hours;
   };
 
-  const urlImagem = (wayOfImage: string) => {
-    return `https://agenciadenoticias.ibge.gov.br/${wayOfImage}`;
-  }
-
   return (
     <div className="favorites-page">
-      <h1>Meus Favoritos</h1>
-      <div className="links">
-        <Link to="/mostRecently">Mais recentes</Link>
+      <div className={ style.links }>
+        <Link className={ style.subLink } to="/mostRecently">Mais recentes</Link>
         {' '}
-        <Link to="/release">Release</Link>
+        <Link className={ style.subLink } to="/release">Release</Link>
         {' '}
-        <Link to="/news">Notícia</Link>
+        <Link className={ style.subLink } to="/news">Notícia</Link>
         {' '}
-        <Link to="/favorite">Favoritas</Link>
+        <Link className={ style.subLink } to="/favorite">Favoritas</Link>
         {' '}
       </div>
-      <section>
+      <section className={ style.allNews }>
         {favorites.map((favorite) => (
           <div key={ favorite.id }>
-            { favorite.tipo === 'Release' ? (
-              <div className="TypeRelease">
-                <h2 className="mainTitle">{favorite.titulo}</h2>
-                <p>{favorite.introducao}</p>
-                <p>
-                  {`Publicado há
-                    ${calculateTimeDifference(favorite.data_publicacao)} 
-                    ${calculateTimeDifference(favorite.data_publicacao) === 1 ? 'hora' : 'horas'}
-                  `}
-                </p>
-                <button className="link">
-                <a href={favorite.link}>Leia mais</a>
+            <div className={ style.everyNews }>
+              <h2 className={ style['ibm-plex-othersNews'] }>{favorite.titulo}</h2>
+              <p className={ style['nunito-sans'] }>{favorite.introducao}</p>
+              <p className={ style.time }>
+                {`Publicado há
+                  ${calculateTimeDifference(favorite.data_publicacao)} 
+                  ${calculateTimeDifference(favorite.data_publicacao) === 1 ? 'hora' : 'horas'}
+                `}
+              </p>
+              <div className={ style.lineEnd } >
+                <button className={ style.linkBtn }>
+                  <a className={ style['poppins-a'] } href={favorite.link}>Leia mais</a>
                 </button>
-                <button
-                  type="button"
-                  className="favoriteButton"
-                  onClick={ () => handleFavorite(favorite) }
-                >
-                { favorites ?
-                  <img src={ onHeart } alt="Favoritado" /> :
-                  <img src={ offHeart } alt="Desfavoritado" />
-                }
-                </button>
-              </div>
-            ) : (
-              <div className="TypeNotice">
                 <img
-                  className={style.image}
-                  src={ urlImagem(favorite?.imageUrl) }
-                  alt={ favorite.titulo } 
-                /> 
-                <h2 className="mainTitle">{favorite.titulo}</h2>
-                <p>{favorite.introducao}</p>
-                <p>
-                  {`Publicado há
-                    ${calculateTimeDifference(favorite.data_publicacao)} 
-                    ${calculateTimeDifference(favorite.data_publicacao) === 1 ? 'hora' : 'horas'}
-                  `}
-                </p>
-                <button className="link">
-                  <a href={favorite.link}>Leia mais</a>
-                </button>
-                <button
-                  type="button"
-                  className="favoriteButton"
-                  onClick={ () => handleFavorite(favorite) }
-                >
-                  { favorites ?
-                    <img src={ onHeart } alt="Favoritado" /> :
-                    <img src={ offHeart } alt="Desfavoritado" />
-                  }
-                </button>
+                  src={favorites.find((fav) => fav.id === favorite.id) ? onHeart : offHeart}
+                  alt={favorites.find((fav) => fav.id === favorite.id) ? "Favoritado" : "Desfavoritado"}
+                  onClick={() => handleFavorite(favorite)}
+                  className={style.favoriteImage}
+                />
               </div>
-            )}
+            </div>
           </div>
         ))}
       </section>

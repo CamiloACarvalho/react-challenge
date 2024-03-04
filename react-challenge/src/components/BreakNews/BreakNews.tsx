@@ -16,7 +16,7 @@ function BreakNews () {
   // Esse useState é para rendererizar todas as notícias
   const [allNews, setAllNews] = useState<notice[]>([]);
   // useState para armazenar o número de notícias carregadas
-  const [loadedNews, setLoadedNews] = useState(9);
+  const [loadedNews, setLoadedNews] = useState(10);
 
   const {
     favorites,
@@ -29,7 +29,7 @@ function BreakNews () {
       try {
         const newsData = await Api();
         setLoading(false);
-        setLastBreakingNews(findMostRecent(newsData));
+        setLastBreakingNews(newsData[0]);
         setAllNews(newsData.slice(0, loadedNews));
       } catch (error) {
         console.error('Erro ao buscar dados:', error);
@@ -44,21 +44,7 @@ function BreakNews () {
   const handleLoadMore = () => {
     setLoadedNews(loadedNews + 3);
   };
-
-  // Função para encontrar a notícia mais recente
-  const findMostRecent = (newsData: notice[]): notice | null => {
-    if (newsData.length === 0) return null;
-
-    let mostRecent = newsData[0];
-    for (let i = 1; i < newsData.length; i++) {
-      const current = new Date(newsData[i].data_publicacao);
-      const recent = new Date(mostRecent.data_publicacao);
-      if (current > recent) {
-        mostRecent = newsData[i];
-      }
-    }
-    return mostRecent;
-  };
+  
 
   let datePublication: number | null = null;
 

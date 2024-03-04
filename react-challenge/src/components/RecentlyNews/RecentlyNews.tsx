@@ -71,78 +71,52 @@ function RecentlyNews () {
         <img className="loading" src={ loadGif } alt="loading" />
       ) : (
         <section className="newsOfTheDay">
-          <div className="links">
-            <Link to="/mostRecently">Mais recentes</Link>
+          <div className={ style.links }>
+            <Link className={ style.subLink } to="/mostRecently">Mais recentes</Link>
             {' '}
-            <Link to="/release">Release</Link>
+            <Link className={ style.subLink } to="/release">Release</Link>
             {' '}
-            <Link to="/news">Notícia</Link>
+            <Link className={ style.subLink } to="/news">Notícia</Link>
             {' '}
-            <Link to="/favorite">Favoritas</Link>
+            <Link className={ style.subLink } to="/favorite">Favoritas</Link>
             {' '}
           </div>
-          <div className="recentlyNews">
+          <div className={ style.lastBreakingNews }>
             {dayNews ? (
               dayNews
               .filter((news) => calculateTimeDifference(news.data_publicacao) <= 48)
               .map((news) => (
                 <div key={news.id}>
-                  { news.tipo === 'Release' ? (
-                    <div className="TypeRelease">
-                      <h2 className="mainTitle">{news.titulo}</h2>
-                      <p>{news.introducao}</p>
-                      <p>
-                        {`Publicado há
-                          ${calculateTimeDifference(news.data_publicacao)} 
-                          ${calculateTimeDifference(news.data_publicacao) === 1 ? 'hora' : 'horas'}
-                        `}
-                      </p>
-                      <button className="link">
-                        <a href={news.link}>Leia mais</a>
-                      </button>
-                      <button
-                        type="button"
-                        className="favoriteButton"
-                        onClick={() => handleFavorite(news)}
-                      >
-                        {favorites.find((favorite) => favorite.id === news.id) ? (
-                          <img src={favorite} alt="Favoritado" />
-                        ) : (
-                          <img src={notFavorite} alt="Desfavoritado" />
-                        )}
-                      </button>
+                  <div className={ style.mainNotice }>
+                    <img
+                      className={style.image}
+                      src={ urlImagem(news?.imageUrl) }
+                      alt={ news.titulo } 
+                    /> 
+                    <div className={ style.cardNews }>
+                      <div className={ style.topo }>
+                        <h2 className={ style['ibm-plex-othersNews'] }>{news.titulo}</h2>
+                        <img
+                          src={favorites.find((favorite) => favorite.id === news.id) ? favorite : notFavorite}
+                          alt={favorites.find((favorite) => favorite.id === news.id) ? "Favoritado" : "Desfavoritado"}
+                          className={ style.favoriteImage }
+                          onClick={ () => handleFavorite(news) }
+                          />
+                      </div>
+                      <p className={ style['poppins-regular'] }>{news.introducao}</p>
+                      <div className={ style.lineEnd }>
+                        <p>
+                          {`Publicado há
+                            ${calculateTimeDifference(news.data_publicacao)} 
+                            ${calculateTimeDifference(news.data_publicacao) === 1 ? 'hora' : 'horas'}
+                          `}
+                        </p>
+                        <button className={ style.linkBtn }>
+                          <a className={ style['poppins-a'] } href={news.link}>Leia mais</a>
+                        </button>
+                      </div>
                     </div>
-                  ) : (
-                    <div className="TypeNotice">
-                      <img
-                        className={style.image}
-                        src={ urlImagem(news?.imageUrl) }
-                        alt={ news.titulo } 
-                      /> 
-                      <h2 className="mainTitle">{news.titulo}</h2>
-                      <p>{news.introducao}</p>
-                      <p>
-                        {`Publicado há
-                          ${calculateTimeDifference(news.data_publicacao)} 
-                          ${calculateTimeDifference(news.data_publicacao) === 1 ? 'hora' : 'horas'}
-                        `}
-                      </p>
-                      <button className="link">
-                        <a href={news.link}>Leia mais</a>
-                      </button>
-                      <button
-                        type="button"
-                        className="favoriteButton"
-                        onClick={() => handleFavorite(news)}
-                      >
-                        {favorites.find((favorite) => favorite.id === news.id) ? (
-                          <img src={favorite} alt="Favoritado" />
-                        ) : (
-                          <img src={notFavorite} alt="Desfavoritado" />
-                        )}
-                      </button>
-                    </div>
-                  )}
+                  </div>
                 </div>
               ))
             ) : ( 

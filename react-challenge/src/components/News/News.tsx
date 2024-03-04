@@ -112,7 +112,7 @@ function News () {
                   />
                   <div className={ style.cardNews }>
                     <div className={ style.topo }>
-                      <h3 className={ style['ibm-plex-othersNews'] }>{ news.titulo }</h3>
+                      <h2 className={ style['ibm-plex-othersNews'] }>{ news.titulo }</h2>
                       <img
                         src={favorites.find((favorite) => favorite.id === news.id) ? favorite : notFavorite}
                         alt={favorites.find((favorite) => favorite.id === news.id) ? "Favoritado" : "Desfavoritado"}

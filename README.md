@@ -6,7 +6,6 @@ Este teste de Frontend para pessoas desenvolvedoras junior da Trybe. O objetivo 
 
 ## *Tecnologias Utilizadas*
 
-## *Front-end:*
 - React
 - Redux
 - CSS3
@@ -68,4 +67,4 @@ Não foram criados testes para este projeto.
 
 ## Acesse ao Projeto
 
-Para visualizar o projeto, acesse [Milo News](https://www.projeto.com).
+Para visualizar o projeto, acesse [Milo News](https://react-challenge-orcin-psi.vercel.app).

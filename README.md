@@ -67,4 +67,4 @@ Não foram criados testes para este projeto.
 
 ## Acesse ao Projeto
 
-Para visualizar o projeto, acesse [Milo News](https://react-challenge-orcin-psi.vercel.app).
+Para visualizar o projeto, acesse [Milo News](https://react-challenge-zeta.vercel.app/)

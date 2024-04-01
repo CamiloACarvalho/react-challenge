@@ -7,7 +7,7 @@ Este teste de Frontend para pessoas desenvolvedoras junior da Trybe. O objetivo 
 ## *Tecnologias Utilizadas*
 
 - React
-- Redux
+- TypeScript
 - CSS3
 - Context API
 
